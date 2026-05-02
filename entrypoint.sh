@@ -273,7 +273,7 @@ is_kernel_module_loaded() {
 
 is_granted_linux_capability() {
 
-  if capsh --print | grep -Eq "^Current: = .*,?${1}(,|$)"; then
+  if capsh --print | grep -Eq "^Current: ?=? .*,?${1}(,|$)"; then
     return 0
   fi
 
@@ -530,7 +530,7 @@ boot_helper_mount() {
 boot_helper_get_version_flags() {
 
   local -r requested_version="${state[$STATE_NFS_VERSION]}"
-  local flags=('--nfs-version' "$requested_version" '--no-nfs-version' 2)
+  local flags=('--nfs-version' "$requested_version")
 
   if ! is_nfs3_enabled; then
     flags+=('--no-nfs-version' 3)
