@@ -1,7 +1,8 @@
 # a1exs/nfs-server
 
 A lightweight, robust, flexible, and containerized NFS server.
-It`s fork of erichough/nfs-server
+
+It`s fork of erichough/nfs-server v2.2.1
 
 
 ## Why?
