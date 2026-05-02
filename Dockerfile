@@ -1,14 +1,13 @@
-ARG BUILD_FROM=alpine:latest
 
-FROM $BUILD_FROM
+FROM alpine:latest
 
-RUN set -eux \
-    && apk --update --no-cache add libcap bash nfs-utils tzdata\
-    && rm -rfv /etc/idmapd.conf /etc/exports \
-    && mkdir -p /var/lib/nfs/rpc_pipefs \
-    && mkdir -p /var/lib/nfs/v4recovery \
-    && echo "rpc_pipefs  /var/lib/nfs/rpc_pipefs  rpc_pipefs  defaults  0  0" >> /etc/fstab \
-    && echo "nfsd        /proc/fs/nfsd            nfsd        defaults  0  0" >> /etc/fstab
+RUN apk add --no-cache --update --verbose libcap bash nfs-utils tzdata && \
+    rm -rf /var/cache/apk /tmp /sbin/halt /sbin/poweroff /sbin/reboot && \
+    rm -rfv /etc/idmapd.conf /etc/exports && \
+    mkdir -p /var/lib/nfs/rpc_pipefs && \
+    mkdir -p /var/lib/nfs/v4recovery && \
+    echo "rpc_pipefs  /var/lib/nfs/rpc_pipefs  rpc_pipefs  defaults  0  0" >> /etc/fstab && \
+    echo "nfsd        /proc/fs/nfsd            nfsd        defaults  0  0" >> /etc/fstab
 
 EXPOSE 2049
 

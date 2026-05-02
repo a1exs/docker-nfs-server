@@ -5,7 +5,7 @@ services:
     build:
       context: ../../
       dockerfile: Dockerfile
-    image: "erichough/nfs-server"
+    image: "olehandro/nfs-server"
     container_name: "nfs-server"
     cap_add:
       - SYS_ADMIN
